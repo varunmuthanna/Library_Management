@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Library Management System</title>
+	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  	<script src="search.js" type="text/javascript"></script>
+</head>
+<body>
+	<div class='container'>
+    <div class="page-header text-center">
+      <h1>My Virtual Library</h1>
+    </div>
+		<div class="row">
+			<div class="col-md-2">
+				<ul class="list-group">
+					<li class="list-group-item">
+						<a id = "searchli" href="#">Search</a>
+					</li>
+					<li class="list-group-item">
+						<a id="newmemli" href="#">Add New Member</a>
+					</li>
+					<li class="list-group-item">
+						<a id="finesli" href="#">Check Fines</a>
+					</li>
+				</ul>
+        <div>
+          <button type="button" id = "date_inc">Refresh Date</button>
+        </div>
+        <div>
+          <div>Date Today:</div>
+          <span id="date_val"></span>
+        </div>
+			</div>
+			<div class="list-group col-md-8">
+				<div class="list-group col-md-8" id ="searchform">
+					<div class="form-inline">
+      					<div class="input-group">
+        					<input class="form-control" id="search" size="50" placeholder="Search for ISBN,Title,Author">
+      					
+      						<div class="input-group-btn">
+        						<button type="button" id="searchclick" class="btn btn-default">Search</button>
+      						</div>
+      					</div>
+    				</div>	
+				</div>
+				<div hidden class="list-group col-md-8" id ="newmemform">
+					<form class="form-horizontal">
+    					<div class="form-group">
+      						<label class="control-label col-sm-2">SSN:</label>
+      						<div class="col-sm-6">
+        						<input class="form-control" id="ssn" placeholder="Enter ssn">
+      						</div>
+                  <span id ="checkssn" class="alert-danger"></span>
+    					</div>
+    					<div class="form-group">
+      						<label class="control-label col-sm-2">Fname:</label>
+      						<div class="col-sm-6">
+        						<input class="form-control" id="fname" placeholder="Enter First Name">
+      						</div>
+                  <span id ="checkfname" class="alert-danger"></span>
+    					</div>
+    					<div class="form-group">
+      						<label class="control-label col-sm-2">Lname:</label>
+      						<div class="col-sm-6">
+        						<input class="form-control" id="lname" placeholder="Enter Last Name">
+      						</div>
+                  <span id ="checklname" class="alert-danger"></span>
+    					</div>
+    					<div class="form-group">
+      						<label class="control-label col-sm-2">Email:</label>
+      						<div class="col-sm-6">
+        						<input class="form-control" id="email" placeholder="Enter Email">
+      						</div>
+                  <span id ="checkemail" class="alert-danger"></span>
+    					</div>
+    					<div class="form-group">
+      						<label class="control-label col-sm-2">Address:</label>
+      						<div class="col-sm-6">
+        						<input class="form-control" id="address" placeholder="Enter Address">
+      						</div>
+                  <span id ="checkaddress" class="alert-danger"></span>
+    					</div>
+    					<div class="form-group">
+      						<label class="control-label col-sm-2">City:</label>
+      						<div class="col-sm-6">
+        						<input class="form-control" id="city" placeholder="Enter City">
+      						</div>
+                  <span id ="checkcity" class="alert-danger"></span>
+    					</div>
+    					<div class="form-group">
+      						<label class="control-label col-sm-2">State:</label>
+      						<div class="col-sm-6">
+        						<input class="form-control" id="state" placeholder="Enter State">
+      						</div>
+                  <span id ="checkstate" class="alert-danger"></span>
+    					</div>
+    					<div class="form-group">
+      						<label class="control-label col-sm-2">Phone:</label>
+      						<div class="col-sm-6">
+        						<input class="form-control" id="phone" placeholder="Enter Phone">
+      						</div>
+                  <span id ="checkphone" class="alert-danger"></span>
+    					</div>
+    					<div class="form-group">        
+      						<div class="col-sm-offset-2 col-sm-6">
+        						<button type="button" id="newmemclick" class="btn btn-default">Submit</button>
+      						</div>
+    					</div>
+    				</form>
+				</div>
+				<div hidden class="list-group col-md-8"  id ="fineform">
+					<div class="form-inline">
+      					<div class="input-group">
+        					<input class="form-control" id="fines" size="50" placeholder="Enter the card number or Name">
+      					
+      						<div class="input-group-btn">
+        						<button type="button" id="finesclick" class="btn btn-default">Check</button>
+      						</div>
+      					</div>
+    				</div>	
+				</div>
+        <div hidden class="list-group col-md-8"  id ="dispbooks">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>ISBN</th>
+                <th>ISBN13</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Cover</th>
+                <th>Publisher</th>
+                <th>Pages</th>
+                <th>Checkout/CheckIn</th>
+              </tr>
+            </thead>
+            <tbody id="dispbookbody">
+            </tbody>
+          </table>
+        </div>
+        <div hidden class="list-group col-md-8"  id ="confirmcheckout">
+          <div class="list-group col-md-2" id="imgcheckout">
+          </div>
+          <div class="list-group col-md-6" id="checkoutdetails">
+            
+          </div>
+        </div>
+
+        <div hidden class="list-group col-md-8"  id ="dispnewborrower">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Fisrt Name</th>
+                <th>Last Name</th>
+                <th>SSN</th>
+                <th>CARD ID</th>
+                <th>Message</th>
+              </tr>
+            </thead>
+            <tbody id="dispnewborrbody">
+            </tbody>
+          </table>
+        </div>
+
+        <div hidden class="list-group col-md-8" id = "errordiv">
+          <span class="alert-danger" id="errmesg"></span>
+        </div>
+
+        <div hidden class="list-group col-md-8" id = "successdiv">
+          <span class="alert-success" id="successmesg"></span>
+        </div>
+
+        <div hidden class="list-group col-md-8" id = "finesdiv">
+          
+        </div>
+			</div>
+
+		</div>
+	</div>
+</body>
+</html>
